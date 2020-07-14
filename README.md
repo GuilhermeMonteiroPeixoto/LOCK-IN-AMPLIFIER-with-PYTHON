@@ -4,10 +4,11 @@ Simulador construído para entendimento do funcionamento de um Lock-in.
 
 ![screenshot](Foto_Interface.png)
 
-## Ferramentas Usadas
+## Bibliotecas Usadas
 
 - [x] NumPy
 - [x] Pandas
 - [x] Matplotlib
 - [x] Scipy
 - [x] Sklearn
+- [x] QtPy5
