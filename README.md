@@ -21,6 +21,7 @@ To work correctly the PSD must be “programmed” to work in a given frequency 
 - [x] Sklearn
 - [x] QtPy5
 
+## Referências
 
 [ANALYSIS AND DEVELOPMENT OF A DIGITAL LOCK-IN AMPLIFIER](http://www.ppgee.eng.ufba.br/tese/62e9c5fdd35710b55ff5da97cb5d305a.pdf)
 
