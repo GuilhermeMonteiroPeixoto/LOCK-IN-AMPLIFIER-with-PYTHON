@@ -15,13 +15,14 @@ from sklearn.metrics import mean_absolute_error
 # The frequency of the input signal and the reference signal must be the same.
 
 Vref_f = float(input('\nFrequencia: '))
+Vref_f = Vref_f*20
 Vin_f = Vref_f
 Vin_B = float(input('\nAmplitude do Sinal de Entrada: '))
 Vin_w = 2*np.pi*Vin_f
 Vin_theta = float(input('\nFase do Sinal de Entrada: '))
 Vref_A = 1 # Amplitude precisa ser 1
 Vref_w = 2*np.pi*Vref_f
-ruido = 1
+ruido = 3
 pontos = 20000
 
 # Generating Signals:
@@ -40,8 +41,8 @@ array_seno_in2 = np.array([Vin_B*np.sin(Vin_w*a/pontos+Vin_theta*np.pi/180) for 
 plt.title('Generating Signals')
 plt.xlabel('Time(s)')
 plt.ylabel('Amplitude')
-plt.plot(array_seno_ref[0:1000],label="Reference Signal")
-plt.plot(array_seno_ref90[0:1000],label="Reference Signal - 90°")
+plt.plot(array_seno_ref[0:500],label="Reference Signal")
+plt.plot(array_seno_ref90[0:500],label="Reference Signal - 90°")
 plt.tight_layout()
 plt.legend(loc='upper right')
 plt.show()
@@ -52,23 +53,38 @@ plt.subplot(2,1,1)
 plt.title('Generating Signals')
 plt.xlabel('Time(s)')
 plt.ylabel('Amplitude')
-plt.plot(array_seno_in[0:1000],label="Noise signal Input")
+plt.plot(array_seno_in[0:500],label="Noise signal Input")
 plt.legend(loc='upper right')
 plt.subplot(2,1,2)
 plt.title('Generating Signals')
 plt.xlabel('Time(s)')
 plt.ylabel('Amplitude')
-plt.plot(array_seno_in2[0:1000],label="Input signal without noise")
+plt.plot(array_seno_in2[0:500],label="Input signal without noise")
 plt.legend(loc='upper right')
 plt.tight_layout()
 plt.show()
-plt.plot(array_seno_in[0:1000],label="Noise signal Input")
-plt.plot(array_seno_in2[0:1000],label="Input signal without noise")
+plt.plot(array_seno_in[0:500],label="Noise signal Input")
+plt.plot(array_seno_in2[0:500],label="Input signal without noise")
 plt.title('Comparing signal with and without noise')
 plt.xlabel('Time(s)')
 plt.ylabel('Amplitude')
 plt.tight_layout()
 plt.legend(loc='upper right')
+plt.show()
+
+# ----
+fig, axs = plt.subplots(2, 1, figsize=(8, 8))
+axs[0].plot(array_seno_in[0:500])
+axs[0].plot(array_seno_ref[0:500])
+axs[0].set_xlabel('Time')
+axs[0].set_ylabel('Noise signal Input and Reference Signal')
+axs[0].grid(True)
+
+cxy, f = axs[1].cohere(array_seno_in, array_seno_ref, 256, 1000)
+axs[1].set_ylabel('Coherence')
+#axs[1].set_xlim(0, 500)
+
+fig.tight_layout()
 plt.show()
 
 # Explicar Filtro Passa-Baixo e Multiplicação
